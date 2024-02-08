@@ -3,13 +3,7 @@
 <script>
   document.addEventListener('frcp.orders.orderMounted', function(event) {
   const el = event.detail.el;
-  const contactBtn = el.querySelector('.frcp-order__contact-btn');
-  const newBtn = document.createElement('a');
-  newBtn.classList = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
-  newBtn.innerText = contactBtn.innerText;
-  newBtn.href = '/pages/drop-us-a-line';
-  contactBtn.before(newBtn);
-  contactBtn.remove()
+  console.log(el);
   });
 </script>
 
