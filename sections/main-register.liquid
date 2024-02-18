@@ -135,6 +135,9 @@
         {{ form.errors.messages.password }}.
       </span>
     {%- endif -%}
+    <label for="marketing">
+      <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" /> I agree to receive promotions and coupons.
+    </label>
     <button>
       {{ 'customer.register.submit' | t }}
     </button>
