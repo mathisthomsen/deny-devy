@@ -10,7 +10,7 @@
     const newChild = document.createElement('span');
     newChild.classList = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
     newChild.setAttribute('data-to', 'https://www.google.de')
-    newChild.innerText('Download')
+    newChild.textContent('Download')
     newBtn.appendChild(newChild);
     console.log(el);
     el.insertBefore(newBtn, el.querySelector('.frcp-order__summary'))
