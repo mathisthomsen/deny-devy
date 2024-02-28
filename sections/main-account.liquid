@@ -4,10 +4,10 @@
   document.addEventListener('frcp.orders.orderMounted', function(event) {
     const el = event.detail.el;
     
-    const orderItem = el.querySelectorAll('.frcp-order__line-item');
+    const orderItem = el.querySelectorAll('.frcp-order__actions--one-action');
     console.log(orderItem);
     const newBtn = document.createElement('a');
-    newBtn.classList = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
+    newBtn.classList = 'frcp-order__actions frcp-order__actions--one-action';
     newBtn.innerText = 'download';
     newBtn.href = '/pages/get-in-touch-with-us';
     orderItem.forEach((element) => element.append(newBtn));
