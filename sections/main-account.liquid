@@ -13,6 +13,7 @@
     newChild.classList = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
     newChild.setAttribute('href', downloadLink);
     newChild.setAttribute('tabindex', '0');
+    newChild.setAttribute('target', '_blank')
     newChild.append('Download');
     newBtn.appendChild(newChild);
     el.insertBefore(newBtn, el.querySelector('.frcp-order__details'))
