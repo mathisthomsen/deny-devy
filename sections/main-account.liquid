@@ -4,6 +4,7 @@
   document.addEventListener('frcp.orders.orderMounted', function(event) {
     const el = event.detail.el;
     const orderId = event.detail.order.id;
+    const downloadLink = "https://paperless-life.fetchapp.com/orders?email={{customer.email}}&number=" + orderId + "&submit=true"
     
     const orderItem = el.querySelectorAll('.frcp-card');
     const newBtn = document.createElement('div');
@@ -17,9 +18,9 @@
     console.log(el);
     console.log(orderId);
     console.log('{{ customer.email }}');
+    console.log(downloadLink);
     el.insertBefore(newBtn, el.querySelector('.frcp-order__details'))
     
-    /*https://paperless-life.fetchapp.com/orders?email={{email}}&number={{order_number}}&submit=true*/
     
   });
 </script>
