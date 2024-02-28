@@ -11,7 +11,7 @@
     newBtn.classList = 'frcp-order__actions frcp-order__actions--one-action';
     const newChild = document.createElement('a');
     newChild.classList = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
-    newChild.setAttribute('href', 'https://www.google.de');
+    newChild.setAttribute('href', downloadLink);
     newChild.setAttribute('tabindex', '0');
     newChild.append('Download');
     newBtn.appendChild(newChild);
@@ -20,8 +20,6 @@
     console.log('{{ customer.email }}');
     console.log(downloadLink);
     el.insertBefore(newBtn, el.querySelector('.frcp-order__details'))
-    
-    
   });
 </script>
 
