@@ -6,10 +6,11 @@
     
     const orderItem = el.querySelectorAll('.frcp-order__actions--one-action');
     console.log(orderItem);
-    const newBtn = document.createElement('a');
+    const newBtn = document.createElement('div');
     newBtn.classList = 'frcp-order__actions frcp-order__actions--one-action';
-    newBtn.innerText = 'download';
-    newBtn.href = '/pages/get-in-touch-with-us';
+    const newChild = document.createElement('span');
+    newChild.classlist = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
+    newBtn.appendChild(newChild);
     orderItem.forEach((element) => element.append(newBtn));
   });
 </script>
