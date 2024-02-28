@@ -3,7 +3,7 @@
 <script>
   document.addEventListener('frcp.orders.orderMounted', function(event) {
     const el = event.detail.el;
-    const orderId = event.detail.order;
+    const orderId = event.detail.order.id;
     
     const orderItem = el.querySelectorAll('.frcp-card');
     const newBtn = document.createElement('div');
