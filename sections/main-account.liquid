@@ -11,7 +11,7 @@
     const newChild = document.createElement('span');
     newChild.classlist = 'frcp-order__btn frcp-order__contact-btn frcp-btn frcp-btn--secondary';
     newBtn.appendChild(newChild);
-    orderItem.forEach((element) => element.append(newBtn));
+    orderItem.forEach((element) => element.insertBefore(newBtn));
   });
 </script>
 
