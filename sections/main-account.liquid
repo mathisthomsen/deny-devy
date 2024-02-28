@@ -3,7 +3,6 @@
 <script>
   document.addEventListener('frcp.frcp.orders.orderMounted', function(event) {
     const el = event.detail.el;
-    const orderId = event.detail.order;
     
     const orderItem = el.querySelectorAll('.frcp-card');
     const newBtn = document.createElement('div');
@@ -15,7 +14,6 @@
     newChild.append('Download');
     newBtn.appendChild(newChild);
     console.log(el);
-    console.log(orderId);
     el.insertBefore(newBtn, el.querySelector('.frcp-order__details'))
     
 
