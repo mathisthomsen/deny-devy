@@ -3,7 +3,7 @@
 <script>
   document.addEventListener('frcp.orders.orderMounted', function(event) {
     const el = event.detail.el;
-    const orderId = event.detail.order;
+    const orderId = event.detail.order.name;
     console.log(orderId);
     const downloadLink = "https://paperless-life.fetchapp.com/orders?email={{customer.email}}&number=" + orderId + "&submit=true"
     
