@@ -100,7 +100,20 @@
         {% if hervorhebung == true %}
           <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let text = document.querySelector("#image-with-text__text");
+        // Finde das aktuelle Script-Tag
+        let currentScript = document.currentScript;
+        // Finde das nächstgelegene Elternelement mit der gewünschten Section
+        let section = currentScript.closest('.image-with-text'); // Passe den Selektor an deine Section-Klasse an
+        if (!section) {
+            console.error("Section not found");
+            return;
+        }
+        let text = section.querySelector("#image-with-text__text");
+        if (!text) {
+            console.error("Text element not found in section");
+            return;
+        }
+
         let stringsToStyle = [];
         console.log("Text element:", text);
 
@@ -144,11 +157,7 @@
         }
 
         // Style die Strings im Element, wenn das Element vorhanden ist
-        if (text) {
-            styleStrings(text, stringsToStyle);
-        } else {
-            console.log("Element not found");
-        }
+        styleStrings(text, stringsToStyle);
 
         // Optional: CSS für die Highlight-Klasse
         let style = document.createElement('style');
@@ -161,6 +170,7 @@
         document.head.appendChild(style);
     });
 </script>
+
 
 
 
