@@ -99,53 +99,57 @@
         {%- endfor -%}
         {% if hervorhebung == true %}
           <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                let text = document.querySelector("#image-with-text__text");
-                let stringsToStyle = [];
-                console.log(text);
-        
-                {% for block in section.blocks %}
-                  {% if block.type == "hervorhebung" %}
-                    {% assign emph = block.settings.text-emphasis %}
-                    stringsToStyle.push("{{ emph }}");
-                  {% endif %}
-                {% endfor %}
-        
-                console.log(stringsToStyle);
-        
-                // Funktion, um die Strings zu finden und zu stylen
-                function styleStrings(element, strings) {
-                    let content = element.innerHTML;
-        
-                    strings.forEach(str => {
-                        // Erstelle eine neue, gestylte Version des Strings
-                        let styledString = `<span class="highlight">${str}</span>`;
-                        // Ersetze alle Vorkommen des Strings mit der gestylten Version
-                        let regex = new RegExp(str, 'g');  // 'g' für globales Ersetzen
-                        content = content.replace(regex, styledString);
-                    });
-        
-                    // Setze den neuen HTML-Inhalt des Elements
-                    element.innerHTML = content;
-                }
-        
-                // Style die Strings im Element, wenn das Element vorhanden ist
-                if (text) {
-                    styleStrings(text, stringsToStyle);
-                }
-        
-                // Optional: CSS für die Highlight-Klasse
-                let style = document.createElement('style');
-                style.innerHTML = `
-                    .highlight {
-                        background-color: yellow;
-                        font-weight: bold;
-                    }
-                `;
-                document.head.appendChild(style);
+    document.addEventListener("DOMContentLoaded", function() {
+        let text = document.querySelector("#image-with-text__text");
+        let stringsToStyle = [];
+        console.log(text);
+
+        {% for block in section.blocks %}
+          {% if block.type == "hervorhebung" %}
+            {% assign emph = block.settings.text-emphasis %}
+            stringsToStyle.push("{{ emph }}");
+          {% endif %}
+        {% endfor %}
+
+        console.log(stringsToStyle);
+
+        // Funktion, um Sonderzeichen in Strings zu escapen
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Funktion, um die Strings zu finden und zu stylen
+        function styleStrings(element, strings) {
+            let content = element.innerHTML;
+
+            strings.forEach(str => {
+                // Erstelle eine neue, gestylte Version des Strings
+                let styledString = `<span class="highlight">${str}</span>`;
+                // Ersetze alle Vorkommen des Strings mit der gestylten Version
+                let regex = new RegExp(escapeRegExp(str), 'g');  // 'g' für globales Ersetzen
+                content = content.replace(regex, styledString);
             });
-          console.log(stringsToStyle);
-        </script>
+
+            // Setze den neuen HTML-Inhalt des Elements
+            element.innerHTML = content;
+        }
+
+        // Style die Strings im Element, wenn das Element vorhanden ist
+        if (text) {
+            styleStrings(text, stringsToStyle);
+        }
+
+        // Optional: CSS für die Highlight-Klasse
+        let style = document.createElement('style');
+        style.innerHTML = `
+            .highlight {
+                background-color: yellow;
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
 
                   {% endif %}
       </div>
