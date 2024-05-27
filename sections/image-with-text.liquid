@@ -14,6 +14,8 @@
   }
 {%- endstyle -%}
 
+
+
 {% assign scheme1 = settings.color_schemes | first %}
 
 <div class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == scheme1 and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -74,6 +76,7 @@
               <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
+            
             {%- when 'button' -%}
               {%- if block.settings.button_label != blank -%}
                 <a
@@ -88,12 +91,20 @@
                   {{ block.settings.button_label | escape }}
                 </a>
               {%- endif -%}
+            {%- when 'hervorhebung' -%}
+              Hervorhebung
+              <script>
+                
+  
+              </script>
           {%- endcase -%}
         {%- endfor -%}
       </div>
     </div>
   </div>
 </div>
+
+
 
 {% schema %}
 {
