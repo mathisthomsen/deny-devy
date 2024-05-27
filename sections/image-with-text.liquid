@@ -389,6 +389,44 @@
       ]
     },
     {
+      "type": "hervorhebung",
+      "name": "Hervorhebung",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text-emphasis",
+          "label": "text",
+          "info": "Muss mit einem Textabschnitt aus dem Absatz exakt übereinstimmen"
+        },
+        {
+          "type": "radio",
+          "id": "emphasis-type",
+          "label": "Art der Hervorhebung",
+          "options": [
+            {
+              "value": "font",
+              "label": "Schriftart"
+            },
+            {
+              "value": "marker",
+              "label": "Textmarker"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Schriftart",
+          "info": "Hat nur Einfluss, wenn oben 'Schriftart' als Art der Hervorhebung gewählt wurde."
+        },
+        {
+          "type": "font_picker",
+          "label": "Schriftart",
+          "id": "emphasis-font",
+          "default": "work_sans_n4"
+        }
+      ]
+    },
+    {
       "type": "text",
       "name": "t:sections.image-with-text.blocks.text.name",
       "limit": 1,
