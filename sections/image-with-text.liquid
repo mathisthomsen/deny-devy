@@ -159,10 +159,13 @@
             .highlight::after{
                 content: '';
                 position: absolute;
-                width: 100%;
-                height: 75%;
+                width: 95%;
+                height: 50%;
                 background-color: fuchsia;
-                transform: translateY(-25%);
+                transform: translateY(90%) rotate(-1deg);
+                top: 0;
+                left: 4px;
+                z-index: -1;
             }
         `;
         document.head.appendChild(style);
