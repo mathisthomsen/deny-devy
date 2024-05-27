@@ -150,7 +150,7 @@
         "hervorhebung_iB3Y3n": {
           "type": "hervorhebung",
           "settings": {
-            "text-emphasis": "",
+            "text-emphasis": "bla",
             "emphasis-type": "font",
             "emphasis-font": "work_sans_n4"
           }
@@ -158,7 +158,7 @@
         "hervorhebung_3F4GQn": {
           "type": "hervorhebung",
           "settings": {
-            "text-emphasis": "",
+            "text-emphasis": "bob",
             "emphasis-type": "font",
             "emphasis-font": "work_sans_n4"
           }

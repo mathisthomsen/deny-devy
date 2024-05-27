@@ -108,6 +108,36 @@
                 stringsToStyle.push("{{ emph }}")
               {% endif %}
             {% endfor %}
+
+            // Funktion, um die Strings zu finden und zu stylen
+            function styleStrings(element, strings) {
+                let content = element.innerHTML;
+            
+                strings.forEach(str => {
+                    // Erstelle eine neue, gestylte Version des Strings
+                    let styledString = `<span class="highlight">${str}</span>`;
+                    // Ersetze alle Vorkommen des Strings mit der gestylten Version
+                    let regex = new RegExp(str, 'g');  // 'g' für globales Ersetzen
+                    content = content.replace(regex, styledString);
+                });
+            
+                // Setze den neuen HTML-Inhalt des Elements
+                element.innerHTML = content;
+            }
+            
+            // Style die Strings im Element
+            styleStrings(text, stringsToStyle);
+            
+            // Optional: CSS für die Highlight-Klasse
+            let style = document.createElement('style');
+            style.innerHTML = `
+                .highlight {
+                    background-color: yellow;
+                    font-weight: bold;
+                }
+            `;
+            document.head.appendChild(style);
+            
             console.log(stringsToStyle);
           </script>
         {% endif %}
