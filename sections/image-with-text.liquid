@@ -153,6 +153,9 @@
         // Optional: CSS für die Highlight-Klasse
         let style = document.createElement('style');
         style.innerHTML = `
+            .highlight {
+              position: relative;
+            }
             .highlight::after{
                 content: '';
                 position: absolute;
