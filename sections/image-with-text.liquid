@@ -138,7 +138,29 @@
 
             console.log("Modified content:", content);
 
-            // Setze den neuen HTML-Inhalt des Element
+            // Setze den neuen HTML-Inhalt des Elements
+            element.innerHTML = content;
+            console.log("New innerHTML set:", element.innerHTML);
+        }
+
+        // Style die Strings im Element, wenn das Element vorhanden ist
+        if (text) {
+            styleStrings(text, stringsToStyle);
+        } else {
+            console.log("Element not found");
+        }
+
+        // Optional: CSS für die Highlight-Klasse
+        let style = document.createElement('style');
+        style.innerHTML = `
+            .highlight {
+                background-color: yellow;
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
 
 
 
