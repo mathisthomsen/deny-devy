@@ -19,7 +19,7 @@
 {% assign scheme1 = settings.color_schemes | first %}
 {% assign hervorhebung = false %}
 
-<div class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == scheme1 and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+<div id="{{ section.id }}" class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == scheme1 and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
   <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
     <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
       <div
@@ -100,20 +100,7 @@
         {% if hervorhebung == true %}
           <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Finde das aktuelle Script-Tag
-        let currentScript = document.currentScript;
-        // Finde das nächstgelegene Elternelement mit der gewünschten Section
-        let section = currentScript.closest('.image-with-text'); // Passe den Selektor an deine Section-Klasse an
-        if (!section) {
-            console.error("Section not found");
-            return;
-        }
-        let text = section.querySelector("#image-with-text__text");
-        if (!text) {
-            console.error("Text element not found in section");
-            return;
-        }
-
+        let text = document.querySelector("#{{ section.id }} #image-with-text__text");
         let stringsToStyle = [];
         console.log("Text element:", text);
 
@@ -157,7 +144,11 @@
         }
 
         // Style die Strings im Element, wenn das Element vorhanden ist
-        styleStrings(text, stringsToStyle);
+        if (text) {
+            styleStrings(text, stringsToStyle);
+        } else {
+            console.log("Element not found");
+        }
 
         // Optional: CSS für die Highlight-Klasse
         let style = document.createElement('style');
@@ -170,7 +161,6 @@
         document.head.appendChild(style);
     });
 </script>
-
 
 
 
