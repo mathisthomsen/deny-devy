@@ -111,7 +111,7 @@
                       stringsToMark.push("{{ emph }}");
                     {% elsif block.settings.emphasis-type == "font" %}
                       {% assign font = block.settings.emphasis-font %}
-                      stringsToFont.push([{{ emph }}, {{ font }}]);
+                      stringsToFont.push(["{{ emph }}", "{{ font }}"]);
                     {% endif %}
                   {% endif %}
                 {% endfor %}
