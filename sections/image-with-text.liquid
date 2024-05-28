@@ -121,11 +121,11 @@
                       {% assign emph = block.settings.text-emphasis %}
                       // Wenn der Blocktyp "marker" ist, füge ihn zur Markierliste hinzu
                       {% if block.settings.emphasis-type == "marker" %}
-                          {% assign color_marker = block.settings.color_marker %}
+                          {% assign color_marker = block.settings.color-marker %}
                           stringsToMark.push(["{{ emph }}", "{{ color_marker }}"]);
                       // Wenn der Blocktyp "font" ist, füge ihn zur Schriftartenliste hinzu
                       {% elsif block.settings.emphasis-type == "font" %}
-                          {% assign font = block.settings.emphasis_font.family %}
+                          {% assign font = block.settings.emphasis-font.family %}
                           stringsToFont.push(["{{ emph }}", "{{ font }}"]);
                       {% endif %}
                   {% endif %}
