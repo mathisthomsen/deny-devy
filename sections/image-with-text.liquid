@@ -4,14 +4,10 @@
   {% for block in section.blocks %}
     
     {% if block.type == "hervorhebung" %}
-      h2 {
-          color: red;
-        }
-      {% if block.emphasis-type == "font" %}
-        h2 {
-          color: red;
-        }
-        {{ block.emphasis-font | font_face }}
+
+      {% if block.settings.emphasis-type == "font" %}
+
+        {{ block.settings.emphasis-font | font_face }}
       {% endif %}
     {% endif %}
   {% endfor %}}
