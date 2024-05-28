@@ -126,7 +126,7 @@
                       // Wenn der Blocktyp "font" ist, füge ihn zur Schriftartenliste hinzu
                       {% elsif block.settings.emphasis-type == "font" %}
                           {% assign font = block.settings.emphasis-font.family %}
-                          stringsToFont.push(["{{ emph }}", "{{ font }}"]);
+                          stringsToFont.push(["{{ emph }}", {{ font }}]);
                       {% endif %}
                   {% endif %}
               {% endfor %}
