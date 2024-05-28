@@ -4,6 +4,9 @@
   {% for block in section.blocks %}
     {% if block.type == "hervorhebung" %}
       {% if block.emphasis-type == "font" %}
+        h2 {
+          color: red;
+        }
         {{ block.emphasis-font | font_face }}
       {% endif %}
     {% endif %}
