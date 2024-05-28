@@ -110,7 +110,7 @@
                     {% if block.settings.emphasis-type == "marker" %}
                       stringsToMark.push("{{ emph }}");
                     {% elsif block.settings.emphasis-type == "font" %}
-                      {% assign font = block.settings.emphasis-font %}
+                      {% assign font = block.settings.emphasis-font.family %}
                       stringsToFont.push(["{{ emph }}", "{{ font }}"]);
                     {% endif %}
                   {% endif %}
