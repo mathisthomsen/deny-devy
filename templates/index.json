@@ -170,6 +170,14 @@
             "emphasis-type": "font",
             "emphasis-font": "itc_tapioca_n5"
           }
+        },
+        "hervorhebung_ne3HCY": {
+          "type": "hervorhebung",
+          "settings": {
+            "text-emphasis": "details",
+            "emphasis-type": "font",
+            "emphasis-font": "abril_fatface_n4"
+          }
         }
       },
       "block_order": [
@@ -179,7 +187,8 @@
         "hervorhebung_pYk9gz",
         "hervorhebung_iB3Y3n",
         "hervorhebung_3F4GQn",
-        "hervorhebung_B3rWNN"
+        "hervorhebung_B3rWNN",
+        "hervorhebung_ne3HCY"
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/photo-1453106037972-08fbfe790762.jpg",
