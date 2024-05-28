@@ -155,11 +155,11 @@
                     console.log("Original content:", content);
                             
                     strings.forEach(str => {
-                        let escapedStr = escapeRegExp(str);
+                        let escapedStr = escapeRegExp(str[0]);
                         console.log(`Escaped string: ${escapedStr}`);
         
                         // Erstelle eine neue, gestylte Version des Strings
-                        let styledString = `<span class="specialFont">${str}</span>`;
+                        let styledString = `<span style="font-family:${str[0]}">${str[0]}</span>`;
                         console.log(`Styled string: ${styledString}`);
         
                         // Ersetze alle Vorkommen des Strings mit der gestylten Version
@@ -177,7 +177,7 @@
                 // Style die Strings im Element, wenn das Element vorhanden ist
                 if (text) {
                     markStrings(text, stringsToMark);
-                    /*fontStrings(text, stringsToFont)*/
+                    fontStrings(text, stringsToFont)*/
                 } else {
                     console.log("Marking Element not found");
                 }
