@@ -2,7 +2,7 @@
 
 {%- style -%}
   {% for block in section.blocks %}
-    {% if block.type == "hervorhebung" %}
+    {% if blocktype == "hervorhebung" %}
       {% if block.emphasis-type == "font" %}
         h2 {
           color: red;
