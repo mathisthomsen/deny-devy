@@ -1,6 +1,13 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  {% for block in section.blocks %}
+    {% if block.type == "hervorhebung" %}
+      {% if block.emphasis-type == "font" %}
+        {{ block.emphasis-font | font_face }}
+      {% endif %}
+    {% endif %}
+  {% endfor %}}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -185,6 +192,7 @@
                 // Optional: CSS für die Highlight-Klasse
                 let style = document.createElement('style');
                 style.innerHTML = `
+                    
                     .highlight {
                       position: relative;
                     }
@@ -203,6 +211,7 @@
                 document.head.appendChild(style);
                 });
             </script>
+            
 
 
 
