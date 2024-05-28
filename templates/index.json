@@ -144,7 +144,8 @@
           "settings": {
             "text-emphasis": "Pair",
             "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4"
+            "emphasis-font": "work_sans_n4",
+            "color-marker": "#334fb4"
           }
         },
         "hervorhebung_iB3Y3n": {
@@ -152,7 +153,8 @@
           "settings": {
             "text-emphasis": "collection",
             "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4"
+            "emphasis-font": "work_sans_n4",
+            "color-marker": "#fff"
           }
         },
         "hervorhebung_3F4GQn": {
@@ -160,7 +162,8 @@
           "settings": {
             "text-emphasis": "provide a review",
             "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4"
+            "emphasis-font": "work_sans_n4",
+            "color-marker": "#fff"
           }
         },
         "hervorhebung_B3rWNN": {
@@ -168,7 +171,8 @@
           "settings": {
             "text-emphasis": "availability",
             "emphasis-type": "font",
-            "emphasis-font": "itc_tapioca_n5"
+            "emphasis-font": "itc_tapioca_n5",
+            "color-marker": "#fff"
           }
         },
         "hervorhebung_ne3HCY": {
@@ -176,7 +180,8 @@
           "settings": {
             "text-emphasis": "details",
             "emphasis-type": "font",
-            "emphasis-font": "abril_fatface_n4"
+            "emphasis-font": "abril_fatface_n4",
+            "color-marker": "#fff"
           }
         }
       },
