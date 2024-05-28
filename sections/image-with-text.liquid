@@ -107,9 +107,9 @@
                 {% for block in section.blocks %}
                   {% if block.type == "hervorhebung" %}
                     {% assign emph = block.settings.text-emphasis %}
-                    {% if block.settings.emphasis-type == marker %}
+                    {% if block.settings.emphasis-type == "marker" %}
                       stringsToMark.push("{{ emph }}");
-                    {% elsif block.settings.emphasis-type == font %}
+                    {% elsif block.settings.emphasis-type == "font" %}
                       {% assign font = block.settings.emphasis-font %}
                       stringsToFont.push([{{ emph }}, {{ font }}]);
                     {% endif %}
