@@ -162,6 +162,14 @@
             "emphasis-type": "marker",
             "emphasis-font": "work_sans_n4"
           }
+        },
+        "hervorhebung_B3rWNN": {
+          "type": "hervorhebung",
+          "settings": {
+            "text-emphasis": "availability",
+            "emphasis-type": "marker",
+            "emphasis-font": "beefcakes_n4"
+          }
         }
       },
       "block_order": [
@@ -170,7 +178,8 @@
         "template--16751276196094__d9309c10-b0b6-4297-8905-247c01b9cb78-button-1",
         "hervorhebung_pYk9gz",
         "hervorhebung_iB3Y3n",
-        "hervorhebung_3F4GQn"
+        "hervorhebung_3F4GQn",
+        "hervorhebung_B3rWNN"
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/photo-1453106037972-08fbfe790762.jpg",
