@@ -108,91 +108,83 @@
         {%- endfor -%}
         {% if hervorhebung == true %}
           <script>
+            // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+            
+            // Generische Funktion zum Stylen von Strings
+            function styleStrings(element, strings, type) {
+                let content = element.innerHTML;
+                let modifiedContent = content;
+            
+                strings.forEach(str => {
+                    let escapedStr = escapeRegExp(str[0]);
+                    let styledString = type === 'marker' 
+                        ? `<span class="highlight" style="--color-marker:${str[1]}">${str[0]}</span>` 
+                        : `<span style="font-family:'${str[1]}'">${str[0]}</span>`;
+            
+                    let regex = new RegExp(escapedStr, 'g');
+                    modifiedContent = modifiedContent.replace(regex, styledString);
+                });
+            
+                element.innerHTML = modifiedContent;
+            }
+            
+            // Funktion zum Hinzufügen von CSS-Stilen
+            function appendStyle() {
+                let style = document.createElement('style');
+                style.innerHTML = `
+                    .highlight {
+                        position: relative;
+                    }
+                    .highlight::after {
+                        content: '';
+                        position: absolute;
+                        width: 95%;
+                        height: 50%;
+                        background-color: var(--color-marker);
+                        transform: translateY(90%) rotate(-1deg);
+                        top: 0;
+                        left: 4px;
+                        z-index: -1;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Initialisierungsskript
+            function initScript() {
+                let text = document.querySelector("#{{ section.id }} #image-with-text__text");
+                let stringsToMark = [];
+                let stringsToFont = [];
+            
+                {% for block in section.blocks %}
+                    {% if block.type == "hervorhebung" %}
+                        {% assign emph = block.settings.text-emphasis %}
+                        {% if block.settings.emphasis-type == "marker" %}
+                            {% assign color_marker = block.settings.color-marker %}
+                            stringsToMark.push(["{{ emph }}", "{{ color_marker }}"]);
+                        {% elsif block.settings.emphasis-type == "font" %}
+                            {% assign font = block.settings.emphasis-font.family %}
+                            stringsToFont.push(["{{ emph }}", {{ font }}]);
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            
+                if (text) {
+                    styleStrings(text, stringsToMark, 'marker');
+                    styleStrings(text, stringsToFont, 'font');
+                } else {
+                    console.log("Marking Element not found");
+                }
+            
+                appendStyle(); // Stile erst hinzufügen, wenn das Skript fertig ist
+            }
+            
             document.addEventListener("DOMContentLoaded", function() {
-              // Selektiere das Textelement basierend auf der Abschnitts-ID und dem spezifischen Element-ID
-              let text = document.querySelector("#{{ section.id }} #image-with-text__text");
-              let stringsToMark = [];
-              let stringsToFont = [];
-              console.log("Text element:", text);
-          
-              // Schleife durch alle Blöcke im Abschnitt
-              {% for block in section.blocks %}
-                  {% if block.type == "hervorhebung" %}
-                      {% assign emph = block.settings.text-emphasis %}
-                      // Wenn der Blocktyp "marker" ist, füge ihn zur Markierliste hinzu
-                      {% if block.settings.emphasis-type == "marker" %}
-                          {% assign color_marker = block.settings.color-marker %}
-                          stringsToMark.push(["{{ emph }}", "{{ color_marker }}"]);
-                      // Wenn der Blocktyp "font" ist, füge ihn zur Schriftartenliste hinzu
-                      {% elsif block.settings.emphasis-type == "font" %}
-                          {% assign font = block.settings.emphasis-font.family %}
-                          stringsToFont.push(["{{ emph }}", {{ font }}]);
-                      {% endif %}
-                  {% endif %}
-              {% endfor %}
-          
-              console.log("Strings to mark:", stringsToMark);
-              console.log("Strings to font:", stringsToFont);
-          
-              // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
-              function escapeRegExp(string) {
-                  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              }
-          
-              // Generische Funktion zum Stylen von Strings
-              function styleStrings(element, strings, type) {
-                  let content = element.innerHTML;
-                  console.log("Original content:", content);
-          
-                  // Iteriere über die Strings und style sie entsprechend dem Typ
-                  strings.forEach(str => {
-                      let escapedStr = escapeRegExp(str[0]);
-                      console.log(`Escaped string: ${escapedStr}`);
-          
-                      // Erstelle die gestylte Version des Strings
-                      let styledString = type === 'marker' 
-                          ? `<span class="highlight" style="--color-marker:${str[1]}">${str[0]}</span>` 
-                          : `<span style="font-family:'${str[1]}'">${str[0]}</span>`;
-                      console.log(`Styled string: ${styledString}`);
-          
-                      // Ersetze alle Vorkommen des Strings mit der gestylten Version
-                      let regex = new RegExp(escapedStr, 'g');
-                      content = content.replace(regex, styledString);
-                  });
-          
-                  console.log("Modified content:", content);
-                  element.innerHTML = content;
-                  console.log("New innerHTML set:", element.innerHTML);
-              }
-          
-              // Style die Strings im Textelement, wenn es vorhanden ist
-              if (text) {
-                  styleStrings(text, stringsToMark, 'marker');
-                  styleStrings(text, stringsToFont, 'font');
-              } else {
-                  console.log("Marking Element not found");
-              }
-          
-              // Optional: Füge CSS für die Highlight-Klasse hinzu
-              let style = document.createElement('style');
-              style.innerHTML = `
-                  .highlight {
-                      position: relative;
-                  }
-                  .highlight::after {
-                      content: '';
-                      position: absolute;
-                      width: 95%;
-                      height: 50%;
-                      background-color: var(--color-marker);
-                      transform: translateY(90%) rotate(-1deg);
-                      top: 0;
-                      left: 4px;
-                      z-index: -1;
-                  }
-              `;
-              document.head.appendChild(style);
-              });
+                requestIdleCallback(initScript);
+            });
 
             </script>
             
