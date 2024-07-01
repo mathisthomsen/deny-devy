@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "image_banner": {
@@ -138,62 +147,12 @@
             "button_link": "shopify:\/\/products\/purple-sun",
             "button_style_secondary": false
           }
-        },
-        "hervorhebung_pYk9gz": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "Pair",
-            "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4",
-            "color-marker": "#334fb4"
-          }
-        },
-        "hervorhebung_iB3Y3n": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "collection",
-            "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4",
-            "color-marker": "#b033b4"
-          }
-        },
-        "hervorhebung_3F4GQn": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "provide a review",
-            "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4",
-            "color-marker": "#33a3b4"
-          }
-        },
-        "hervorhebung_B3rWNN": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "availability",
-            "emphasis-type": "font",
-            "emphasis-font": "itc_tapioca_n5",
-            "color-marker": "#fff"
-          }
-        },
-        "hervorhebung_ne3HCY": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "details",
-            "emphasis-type": "font",
-            "emphasis-font": "abril_fatface_n4",
-            "color-marker": "#fff"
-          }
         }
       },
       "block_order": [
         "template--16751276196094__d9309c10-b0b6-4297-8905-247c01b9cb78-heading-1",
         "template--16751276196094__d9309c10-b0b6-4297-8905-247c01b9cb78-text-1",
-        "template--16751276196094__d9309c10-b0b6-4297-8905-247c01b9cb78-button-1",
-        "hervorhebung_pYk9gz",
-        "hervorhebung_iB3Y3n",
-        "hervorhebung_3F4GQn",
-        "hervorhebung_B3rWNN",
-        "hervorhebung_ne3HCY"
+        "template--16751276196094__d9309c10-b0b6-4297-8905-247c01b9cb78-button-1"
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/photo-1453106037972-08fbfe790762.jpg",
@@ -209,12 +168,32 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "accent_BzjLEp": {
+      "type": "accent",
+      "blocks": {
+        "hervorhebung_CHcydx": {
+          "type": "hervorhebung",
+          "settings": {
+            "text-emphasis": "Browse",
+            "emphasis-type": "marker",
+            "emphasis-font": "work_sans_n4",
+            "color-marker": "#ff00e4"
+          }
+        }
+      },
+      "block_order": [
+        "hervorhebung_CHcydx"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "e108ab89-34ee-4b27-a567-18e729b8c678",
-    "d9309c10-b0b6-4297-8905-247c01b9cb78"
+    "d9309c10-b0b6-4297-8905-247c01b9cb78",
+    "accent_BzjLEp"
   ]
 }
