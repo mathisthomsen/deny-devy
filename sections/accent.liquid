@@ -1,3 +1,9 @@
+{% for block in section.blocks %}
+    {% if block.settings.emphasis-type == "font" %}
+      {{ block.settings.emphasis-font | font_face }}
+    {% endif %}
+{% endfor %}}
+  
 <script>
     function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
