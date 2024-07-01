@@ -187,23 +187,13 @@
             "text-emphasis": "latest",
             "emphasis-type": "font",
             "emphasis-font": "abril_fatface_n4",
-            "color-marker": "#fff"
-          }
-        },
-        "hervorhebung_UGmh4J": {
-          "type": "hervorhebung",
-          "settings": {
-            "text-emphasis": "Image",
-            "emphasis-type": "marker",
-            "emphasis-font": "work_sans_n4",
-            "color-marker": "#334fb4"
+            "color-marker": "#ffffff"
           }
         }
       },
       "block_order": [
         "hervorhebung_CHcydx",
-        "hervorhebung_eaUtfb",
-        "hervorhebung_UGmh4J"
+        "hervorhebung_eaUtfb"
       ],
       "settings": {
       }
