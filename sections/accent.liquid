@@ -1,14 +1,16 @@
 {% for block in section.blocks %}
-    {% if block.settings.emphasis-type == "font" %}
-      {{ block.settings.emphasis-font | font_face }}
+    {% if block.type == "hervorhebung" and block.settings.emphasis-type == "font" %}
+        {{ block.settings.emphasis-font | font_face }}
     {% endif %}
-{% endfor %}}
-  
+{% endfor %}
+
 <script>
+    // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
     function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
+    // Generische Funktion zum Stylen von Strings in Textknoten
     function styleStringsInTextNodes(element, strings, type) {
         let nodes = element.childNodes;
         nodes.forEach(node => {
@@ -37,6 +39,7 @@
         });
     }
 
+    // Funktion zum Hinzufügen von CSS-Stilen
     function appendStyle() {
         let style = document.createElement('style');
         style.innerHTML = `
@@ -58,6 +61,7 @@
         document.head.appendChild(style);
     }
 
+    // Initialisierungsskript
     function initScript() {
         let stringsToMark = [];
         let stringsToFont = [];
@@ -81,7 +85,7 @@
             styleStringsInTextNodes(element, stringsToFont, 'font');
         });
 
-        appendStyle();
+        appendStyle(); // Stile erst hinzufügen, wenn das Skript fertig ist
     }
 
     document.addEventListener("DOMContentLoaded", function() {
