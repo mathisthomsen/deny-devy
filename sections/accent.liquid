@@ -1,6 +1,135 @@
+<script>
+    // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // Generische Funktion zum Stylen von Strings
+    function styleStrings(element, strings, type) {
+        let content = element.innerHTML;
+        let modifiedContent = content;
+
+        strings.forEach(str => {
+            let escapedStr = escapeRegExp(str[0]);
+            let styledString = type === 'marker' 
+                ? `<span class="highlight" style="--color-marker:${str[1]}">${str[0]}</span>` 
+                : `<span style="font-family:'${str[1]}'">${str[0]}</span>`;
+
+            let regex = new RegExp(escapedStr, 'g');
+            modifiedContent = modifiedContent.replace(regex, styledString);
+        });
+
+        element.innerHTML = modifiedContent;
+    }
+
+    // Funktion zum Hinzufügen von CSS-Stilen
+    function appendStyle() {
+        let style = document.createElement('style');
+        style.innerHTML = `
+            .highlight {
+                position: relative;
+            }
+            .highlight::after {
+                content: '';
+                position: absolute;
+                width: 95%;
+                height: 50%;
+                background-color: var(--color-marker);
+                transform: translateY(90%) rotate(-1deg);
+                top: 0;
+                left: 4px;
+                z-index: -1;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Initialisierungsskript
+    function initScript() {
+        let stringsToMark = [];
+        let stringsToFont = [];
+
+        {% for block in section.blocks %}
+            {% if block.type == "hervorhebung" %}
+                {% assign emph = block.settings.text-emphasis %}
+                {% if block.settings.emphasis-type == "marker" %}
+                    {% assign color_marker = block.settings.color-marker %}
+                    stringsToMark.push(["{{ emph }}", "{{ color_marker }}"]);
+                {% elsif block.settings.emphasis-type == "font" %}
+                    {% assign font = block.settings.emphasis-font.family %}
+                    stringsToFont.push(["{{ emph }}", "{{ font }}]);
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        let allElements = document.querySelectorAll('body *');
+        allElements.forEach(element => {
+            styleStrings(element, stringsToMark, 'marker');
+            styleStrings(element, stringsToFont, 'font');
+        });
+
+        appendStyle(); // Stile erst hinzufügen, wenn das Skript fertig ist
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        requestIdleCallback(initScript);
+    });
+</script>
+
 {% schema %}
   {
     "name": "Section name",
-    "settings": []
+    "settings": [],
+    "blocks": [
+      {
+      "type": "hervorhebung",
+      "name": "Hervorhebung",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text-emphasis",
+          "label": "text",
+          "info": "Muss mit einem Textabschnitt aus dem Absatz exakt übereinstimmen"
+        },
+        {
+          "type": "radio",
+          "id": "emphasis-type",
+          "label": "Art der Hervorhebung",
+          "options": [
+            {
+              "value": "font",
+              "label": "Schriftart"
+            },
+            {
+              "value": "marker",
+              "label": "Textmarker"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Schriftart",
+          "info": "Hat nur Einfluss, wenn oben 'Schriftart' als Art der Hervorhebung gewählt wurde."
+        },
+        {
+          "type": "font_picker",
+          "label": "Schriftart",
+          "id": "emphasis-font",
+          "default": "work_sans_n4"
+        },
+        {
+          "type": "header",
+          "content": "Farbe",
+          "info": "Hat nur Einfluss, wenn oben 'Textmarker' als Art der Hervorhebung gewählt wurde."
+        },
+        {
+          "type": "color",
+          "id": "color-marker",
+          "label": "Farbe Textmarker",
+          "default" : "#fff"
+        }
+      ]
+    }
+    ]
   }
 {% endschema %}
