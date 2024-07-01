@@ -175,7 +175,7 @@
         "hervorhebung_CHcydx": {
           "type": "hervorhebung",
           "settings": {
-            "text-emphasis": "Browse",
+            "text-emphasis": "misty",
             "emphasis-type": "marker",
             "emphasis-font": "work_sans_n4",
             "color-marker": "#ff00e4"
@@ -185,7 +185,6 @@
       "block_order": [
         "hervorhebung_CHcydx"
       ],
-      "disabled": true,
       "settings": {
       }
     }
