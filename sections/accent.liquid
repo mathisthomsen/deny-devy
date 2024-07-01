@@ -1,28 +1,36 @@
 <script>
-    // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
     function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    // Generische Funktion zum Stylen von Strings
-    function styleStrings(element, strings, type) {
-        let content = element.innerHTML;
-        let modifiedContent = content;
+    function styleStringsInTextNodes(element, strings, type) {
+        let nodes = element.childNodes;
+        nodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                let content = node.nodeValue;
+                let modifiedContent = content;
 
-        strings.forEach(str => {
-            let escapedStr = escapeRegExp(str[0]);
-            let styledString = type === 'marker' 
-                ? `<span class="highlight" style="--color-marker:${str[1]}">${str[0]}</span>` 
-                : `<span style="font-family:'${str[1]}'">${str[0]}</span>`;
+                strings.forEach(str => {
+                    let escapedStr = escapeRegExp(str[0]);
+                    let styledString = type === 'marker' 
+                        ? `<span class="highlight" style="--color-marker:${str[1]}">${str[0]}</span>` 
+                        : `<span style="font-family:'${str[1]}'">${str[0]}</span>`;
 
-            let regex = new RegExp(escapedStr, 'g');
-            modifiedContent = modifiedContent.replace(regex, styledString);
+                    let regex = new RegExp(escapedStr, 'g');
+                    modifiedContent = modifiedContent.replace(regex, styledString);
+                });
+
+                if (modifiedContent !== content) {
+                    let span = document.createElement('span');
+                    span.innerHTML = modifiedContent;
+                    element.replaceChild(span, node);
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                styleStringsInTextNodes(node, strings, type);
+            }
         });
-
-        element.innerHTML = modifiedContent;
     }
 
-    // Funktion zum Hinzufügen von CSS-Stilen
     function appendStyle() {
         let style = document.createElement('style');
         style.innerHTML = `
@@ -44,7 +52,6 @@
         document.head.appendChild(style);
     }
 
-    // Initialisierungsskript
     function initScript() {
         let stringsToMark = [];
         let stringsToFont = [];
@@ -62,23 +69,27 @@
             {% endif %}
         {% endfor %}
 
-        let allElements = document.querySelectorAll('body *');
+        let allElements = document.querySelectorAll('body *:not(script):not(style)');
         allElements.forEach(element => {
-            styleStrings(element, stringsToMark, 'marker');
-            styleStrings(element, stringsToFont, 'font');
+            styleStringsInTextNodes(element, stringsToMark, 'marker');
+            styleStringsInTextNodes(element, stringsToFont, 'font');
         });
 
-        appendStyle(); // Stile erst hinzufügen, wenn das Skript fertig ist
+        appendStyle();
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        requestIdleCallback(initScript);
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initScript);
+        } else {
+            setTimeout(initScript, 0);
+        }
     });
 </script>
 
 {% schema %}
   {
-    "name": "Accent",
+    "name": "Section name",
     "settings": [],
     "blocks": [
       {
@@ -130,11 +141,6 @@
         }
       ]
     }
-    ],
-    "presets": [
-    {
-      "name": "Accent"
-    }
-  ]
+    ]
   }
 {% endschema %}
