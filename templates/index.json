@@ -180,10 +180,20 @@
             "emphasis-font": "work_sans_n4",
             "color-marker": "#ff00e4"
           }
+        },
+        "hervorhebung_TEjK9J": {
+          "type": "hervorhebung",
+          "settings": {
+            "text-emphasis": "Browse",
+            "emphasis-type": "font",
+            "emphasis-font": "beefcakes_n4",
+            "color-marker": "#fff"
+          }
         }
       },
       "block_order": [
-        "hervorhebung_CHcydx"
+        "hervorhebung_CHcydx",
+        "hervorhebung_TEjK9J"
       ],
       "settings": {
       }
