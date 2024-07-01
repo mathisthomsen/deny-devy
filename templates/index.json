@@ -193,10 +193,10 @@
         "hervorhebung_UGmh4J": {
           "type": "hervorhebung",
           "settings": {
-            "text-emphasis": "",
-            "emphasis-type": "font",
+            "text-emphasis": "Image",
+            "emphasis-type": "marker",
             "emphasis-font": "work_sans_n4",
-            "color-marker": "#fff"
+            "color-marker": "#334fb4"
           }
         }
       },
