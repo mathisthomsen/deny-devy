@@ -1,8 +1,10 @@
-{% for block in section.blocks %}
-    {% if block.type == "hervorhebung" and block.settings.emphasis-type == "font" %}
-        {{ block.settings.emphasis-font | font_face }}
-    {% endif %}
-{% endfor %}
+{%- style -%}
+  {% for block in section.blocks %}
+      {% if block.settings.emphasis-type == "font" %}
+          {{ block.settings.emphasis-font | font_face }}
+      {% endif %}
+  {% endfor %}
+{%- endstyle -%}
 
 <script>
     // Funktion zum Escapen von Sonderzeichen in Strings für reguläre Ausdrücke
