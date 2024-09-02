@@ -52,6 +52,7 @@
         "buttons_EAWpFw"
       ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/model-poses-near-bushes.jpg",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
