@@ -22,7 +22,7 @@
         "heading_KQgzqW": {
           "type": "heading",
           "settings": {
-            "heading": "Image with text",
+            "heading": "Test-3",
             "heading_size": "h1"
           }
         },
@@ -48,6 +48,7 @@
         "button_PYaxc8"
       ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/green-plants-grow-in-lines-on-rolling-hills.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
