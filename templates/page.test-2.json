@@ -15,9 +15,57 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "image_banner_qCz3wV": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_pPr37V": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Test 2 - if you know you know!<\/strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_rmwNF8": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_EAWpFw": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "More Info",
+            "button_link_1": "shopify:\/\/pages\/example-page",
+            "button_style_secondary_1": true,
+            "button_label_2": "Buy",
+            "button_link_2": "shopify:\/\/pages\/contact",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_pPr37V",
+        "text_rmwNF8",
+        "buttons_EAWpFw"
+      ],
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_banner_qCz3wV"
   ]
 }
