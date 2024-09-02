@@ -15,9 +15,65 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "image_with_text_UdPwin": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption_wfrnkR": {
+          "type": "caption",
+          "settings": {
+            "caption": "Nice overline!",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_wMXp8L": {
+          "type": "heading",
+          "settings": {
+            "heading": "This is Test 1",
+            "heading_size": "h1"
+          }
+        },
+        "text_tdnb6J": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If this works, it would not be an ideal solution, but still; it is something to work with.<\/p>",
+            "text_style": "subtitle"
+          }
+        },
+        "button_xzM6Lc": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_wfrnkR",
+        "heading_wMXp8L",
+        "text_tdnb6J",
+        "button_xzM6Lc"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/pink-lipstick-through-bright-blue-paper.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "overlap",
+        "color_scheme": "",
+        "image_behavior": "ambient",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_with_text_UdPwin"
   ]
 }
