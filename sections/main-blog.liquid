@@ -73,9 +73,20 @@
   // Funktion zum Laden der Posts
   function loadPosts(reset = false) {
     let tagQuery = selectedTags.length ? '&tag=' + selectedTags.join(',') : '';
-    fetch(`/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=ajax`) // AJAX view
-      .then(response => response.text())
+    let requestUrl = `/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=ajax`;
+
+    console.log("Requesting URL:", requestUrl);
+
+    fetch(requestUrl)
+      .then(response => {
+        console.log("Response status:", response.status);
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+        return response.text();
+      })
       .then(data => {
+        console.log("Data received:", data);
         if (reset) {
           postList.innerHTML = data; // Ersetze die bestehenden Posts
         } else {
@@ -83,7 +94,9 @@
         }
         currentPage++; // Erhöhe die Seitenzahl für den nächsten Aufruf
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error during fetch operation:', error);
+      });
   }
 
   // Event-Listener für Tag-Filter
@@ -93,31 +106,38 @@
       if (selectedTags.includes(tag)) {
         selectedTags = selectedTags.filter(t => t !== tag); // Tag abwählen
         this.setAttribute('aria-pressed', 'false');
+        console.log(`Tag deselected: ${tag}`);
       } else {
         selectedTags.push(tag); // Tag auswählen
         this.setAttribute('aria-pressed', 'true');
+        console.log(`Tag selected: ${tag}`);
       }
 
       currentPage = 1; // Reset auf die erste Seite
+      console.log("Loading posts for selected tags:", selectedTags);
       loadPosts(true); // Lade Posts mit Filter neu
     });
   });
 
   // Event-Listener für den "Mehr laden" Button
   loadMoreButton.addEventListener('click', function() {
+    console.log("Load more posts clicked");
     loadPosts(); // Lade mehr Posts ohne die Liste zu resetten
   });
 
   // Infinite Scrolling Event-Listener
   window.addEventListener('scroll', function() {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      console.log("User has scrolled to the bottom of the page");
       loadMoreButton.style.display = 'block'; // Zeige den Button an
     }
   });
 
   // Initiales Laden der ersten Posts
   loadPosts();
+
 </script>
+
 
 
 {% schema %}
