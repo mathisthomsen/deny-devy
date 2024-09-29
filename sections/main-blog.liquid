@@ -50,6 +50,76 @@
   </div>
 {%- endpaginate -%}
 
+
+<section id="blog-filter">
+  <div id="tag-filter">
+    <button class="tag-button" data-tag="technology">Technology</button>
+    <button class="tag-button" data-tag="design">Design</button>
+    <button class="tag-button" data-tag="business">Business</button>
+  </div>
+  <div id="post-list">
+    <!-- Hier werden die Blog-Posts angezeigt -->
+  </div>
+  <button id="load-more" style="display:none">Mehr laden</button>
+</section>
+
+<script>
+  let currentPage = 1;
+  let selectedTags = [];
+  const blogHandle = 'news'; // Der Handle deines Blogs, ggf. anpassen
+  const postList = document.getElementById('post-list');
+  const loadMoreButton = document.getElementById('load-more');
+
+  // Funktion zum Laden der Posts
+  function loadPosts(reset = false) {
+    let tagQuery = selectedTags.length ? '&tag=' + selectedTags.join(',') : '';
+    fetch(`/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=ajax`) // AJAX view
+      .then(response => response.text())
+      .then(data => {
+        if (reset) {
+          postList.innerHTML = data; // Ersetze die bestehenden Posts
+        } else {
+          postList.insertAdjacentHTML('beforeend', data); // Hänge Posts an
+        }
+        currentPage++; // Erhöhe die Seitenzahl für den nächsten Aufruf
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  // Event-Listener für Tag-Filter
+  document.querySelectorAll('.tag-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const tag = this.getAttribute('data-tag');
+      if (selectedTags.includes(tag)) {
+        selectedTags = selectedTags.filter(t => t !== tag); // Tag abwählen
+        this.setAttribute('aria-pressed', 'false');
+      } else {
+        selectedTags.push(tag); // Tag auswählen
+        this.setAttribute('aria-pressed', 'true');
+      }
+
+      currentPage = 1; // Reset auf die erste Seite
+      loadPosts(true); // Lade Posts mit Filter neu
+    });
+  });
+
+  // Event-Listener für den "Mehr laden" Button
+  loadMoreButton.addEventListener('click', function() {
+    loadPosts(); // Lade mehr Posts ohne die Liste zu resetten
+  });
+
+  // Infinite Scrolling Event-Listener
+  window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      loadMoreButton.style.display = 'block'; // Zeige den Button an
+    }
+  });
+
+  // Initiales Laden der ersten Posts
+  loadPosts();
+</script>
+
+
 {% schema %}
 {
   "name": "t:sections.main-blog.name",
