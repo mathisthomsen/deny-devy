@@ -72,32 +72,35 @@
 
   // Funktion zum Laden der Posts
   function loadPosts(reset = false) {
-    let tagQuery = selectedTags.length ? '&tag=' + selectedTags.join(',') : '';
-    let requestUrl = `/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=blog-ajax`;
+  let tagQuery = selectedTags.length ? '&tag=' + selectedTags.join(',') : '';
+  let requestUrl = `/blogs/${blogHandle}?page=${currentPage}${tagQuery}&section_id=blog-posts`; // Die ID der neuen Section
 
-    console.log("Requesting URL:", requestUrl);
+  console.log("Requesting URL:", requestUrl);
 
-    fetch(requestUrl)
-      .then(response => {
-        console.log("Response status:", response.status);
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
-        }
-        return response.text();
-      })
-      .then(data => {
-        console.log("Data received:", data);
-        if (reset) {
-          postList.innerHTML = data; // Ersetze die bestehenden Posts
-        } else {
-          postList.insertAdjacentHTML('beforeend', data); // Hänge Posts an
-        }
-        currentPage++; // Erhöhe die Seitenzahl für den nächsten Aufruf
-      })
-      .catch(error => {
-        console.error('Error during fetch operation:', error);
-      });
-  }
+  fetch(requestUrl)
+    .then(response => {
+      console.log("Response status:", response.status);
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+      return response.text(); // Oder response.json(), falls du JSON zurückgibst
+    })
+    .then(data => {
+      console.log("Data received:", data);
+      
+      // Hier kannst du die Logik hinzufügen, um den Inhalt in deinem DOM einzufügen.
+      if (reset) {
+        postList.innerHTML = data; // Setze den neuen Inhalt
+      } else {
+        postList.insertAdjacentHTML('beforeend', data); // Füge hinzu
+      }
+      currentPage++; // Erhöhe die Seitenzahl für den nächsten Aufruf
+    })
+    .catch(error => {
+      console.error('Error during fetch operation:', error);
+    });
+}
+
 
   // Event-Listener für Tag-Filter
   document.querySelectorAll('.tag-button').forEach(button => {
