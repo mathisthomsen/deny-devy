@@ -16,11 +16,19 @@
   }
 {%- endstyle -%}
 
+
+
 {%- paginate blog.articles by 6 -%}
   <div class="main-blog page-width section-{{ section.id }}-padding">
     <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ blog.title | escape }}
     </h1>
+
+    <div id="tag-filter">
+    <button class="tag-button" data-tag="technology">Technology</button>
+    <button class="tag-button" data-tag="design">Design</button>
+    <button class="tag-button" data-tag="business">Business</button>
+  </div>
 
     <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {%- for article in blog.articles -%}
@@ -31,47 +39,20 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
-          {%- render 'article-card',
-            article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: true
-          -%}
+          <div id="post-list">
+            <!-- Hier werden die Blog-Posts angezeigt -->
+          </div>
+          <button id="load-more" style="display:none">Mehr laden</button>
         </div>
       {%- endfor -%}
     </div>
 
     {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
+    {%- render 'pagination', paginate: paginate -%}
     {%- endif -%}
   </div>
 {%- endpaginate -%}
 
-
-<section id="blog-filter">
-  <div id="tag-filter">
-    <button class="tag-button" data-tag="technology">Technology</button>
-    <button class="tag-button" data-tag="design">Design</button>
-    <button class="tag-button" data-tag="business">Business</button>
-  </div>
-  <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
-        <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          <div id="post-list">
-            <!-- Hier werden die Blog-Posts angezeigt -->
-          </div>
-        </div>(
-      </div>
-  <button id="load-more" style="display:none">Mehr laden</button>
-</section>
 
 <script>
   let currentPage = 1;
