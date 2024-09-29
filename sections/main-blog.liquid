@@ -73,7 +73,7 @@
   // Funktion zum Laden der Posts
   function loadPosts(reset = false) {
     let tagQuery = selectedTags.length ? '&tag=' + selectedTags.join(',') : '';
-    let requestUrl = `/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=ajax`;
+    let requestUrl = `/blogs/${blogHandle}?page=${currentPage}${tagQuery}&view=blog-ajax`;
 
     console.log("Requesting URL:", requestUrl);
 
